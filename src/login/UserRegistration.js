@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import Login from "./Login";
+import { dbReg } from '../config/configDb';
 
 class UserRegistrationPage extends Component{
     state = {
@@ -16,23 +17,30 @@ class UserRegistrationPage extends Component{
           return false; // The form won't submit
       }
       else{
-          //storing the data in local storage
-        // let fullName=[];
-        // fullName.push(event.target.fullName.value);
-        // localStorage.setItem("fullName",JSON.stringify(fullName));
-        let fullName=event.target.fullName.value;
-        localStorage.setItem("fullName",fullName);
-        let email=event.target.email.value;
-        localStorage.setItem("email",email);
-        let mobileNo=event.target.mobileNo.value;
-        localStorage.setItem("mobileNo",mobileNo);
-        let address=event.target.address.value;
-        localStorage.setItem("address",address);
-        let password=event.target.password.value;
-        localStorage.setItem("password",password);
-        let confirmPassword=event.target.confirmPassword.value;
-        this.setState({isRegistered:true});
-        alert("You have registered successfully");
+        let entry_status = true;
+        let currentComponent = this;
+
+        dbReg.registration.add({email: event.target.email.value, 
+                name : event.target.fullName.value,
+                mobile : event.target.mobileNo.value,
+                address : event.target.address.value,
+                password : event.target.password.value
+            }).then(function (data) {
+                console.log(data);
+            }).catch(function(error) {
+                console.log("Ooops: " + error);
+                entry_status = false;
+            }).then(function () {
+              if(entry_status)
+              {
+                alert("You have registered successfully");
+              }
+              else
+              {
+                alert("You have already registered. Please Login...");
+              }
+              currentComponent.setState({isRegistered:true});
+        });
       }
   }
   render(){

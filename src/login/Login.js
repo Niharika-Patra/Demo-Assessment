@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import Dashboard from "../components/Dashboard";
+import { dbReg } from '../config/configDb';
 
 class Login extends Component{
   state = {
@@ -12,14 +13,28 @@ class Login extends Component{
     e.preventDefault()
     let userName=e.target.userName.value;
     let password=e.target.password.value;
-     console.log('hello');
-    if(userName==localStorage.getItem('email') && password==localStorage.getItem('password')){
-      this.setState({isLoggedin:true});
-    }else{
-      alert("Invalid credential");
-      return false;
-    }
+    let currentComponent = this;
+
+    dbReg.registration.where({email: userName, password: password})
+          .first(function (userData) {
+              console.log(userData);
+              if(userData !== undefined)
+              {
+                localStorage.setItem("fullName",userData.name);
+                localStorage.setItem("email",userData.email);
+                localStorage.setItem("mobileNo",userData.mobile);
+                localStorage.setItem("address",userData.address);
+                localStorage.setItem("password",userData.password);
+
+                currentComponent.setState({isLoggedin:true});
+              }
+              else{
+                alert("Invalid credential");
+                return false;
+              }
+    });
   }
+  
   render(){
     if(this.state.isLoggedin)
     {

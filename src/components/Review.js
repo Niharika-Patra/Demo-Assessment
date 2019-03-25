@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import { Form, Button, ToggleButtonGroup, ToggleButton, ButtonToolbar } from "react-bootstrap";
-import db from '../config/configDb';
+import { db } from '../config/configDb';
 import axios from "axios";
 import apikey from '../config/config';
 
@@ -56,6 +56,8 @@ class Review extends Component {
         let userChoice=e.target.userChoice.value;
         console.log(userRating);
         console.log(userChoice);
+        let entry_status = true;
+        let currentComponent = this;
 
         db.review.add({imgId:this.props.match.params.id, 
                         email: localStorage.getItem("email"), 
@@ -66,10 +68,22 @@ class Review extends Component {
                         imdbRating : this.state.imdbRating,
                         userRating : userRating,
                         userCategory: userChoice
-                    }).catch(function(error) {
-             console.log("Ooops: " + error);
+                }).then(function (data) {
+                    console.log(data);
+                }).catch(function(error) {
+                    console.log("Ooops: " + error);
+                    entry_status = false;
+                }).then(function () {
+                    if(entry_status)
+                    {
+                      alert("You have added review successfully");
+                    }
+                    else
+                    {
+                      alert("You have already added review for this movie...");
+                    }
+                    currentComponent.setState({isSubmitted : true});
           });
-        this.setState({isSubmitted : true});
       }
 
     handleChange = (event) => {
