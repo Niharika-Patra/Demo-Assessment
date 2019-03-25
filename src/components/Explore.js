@@ -112,7 +112,7 @@ class ListTable extends Component {
         <br/>
         <Container>
             <Row>
-                <Col><h3>Movie List :</h3></Col>
+                <Col><h4>Movie List :</h4></Col>
                 <Col><h4 style={{ textAlign: "right" }}><Link to="/Dashboard">Dashboard</Link></h4></Col>
             </Row>
             <Row>
@@ -126,7 +126,7 @@ class ListTable extends Component {
         <BootstrapTable data={ this.state.movies_list } options={ { noDataText: 'No Data Available' } } remote={ true } pagination={ true }
                       fetchInfo={ { dataTotalSize: this.state.totalDataSize } }
                       options={ { sizePerPage: this.state.sizePerPage,
-                                  paginationSize: 10,  // the pagination bar size.
+                                  paginationSize: 7,  // the pagination bar size.
                                   onPageChange: this.onPageChange.bind(this),
                                   page: this.state.currentPage,
                                   hideSizePerPage: true,

@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "bootstrap-less": "^3.3.8",
+    "dexie": "^2.0.4",
     "jquery": "^3.3.1",
     "react": "^16.8.4",
     "react-bootstrap": "^1.0.0-beta.5",

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Table } from "react-bootstrap";
+import { Container, Row, Col, Table, Button } from "react-bootstrap";
 import axios from "axios";
 import apikey from '../config/config';
 
@@ -14,7 +14,8 @@ class DetailsTable extends Component {
         this.state = {
             movies_details : null,
             isError : '',
-            isLoaded: false
+            isLoaded: false,
+            reviewUrl: "/Review/"+this.props.match.params.id
         };
     }
 
@@ -24,7 +25,7 @@ class DetailsTable extends Component {
 
         axios.get('http://www.omdbapi.com/?i='+imgId+'&apikey='+apikey)
             .then(function (response) {
-                if(response.data.Response)
+                if(response.data.Response == "True")
                 {
                     currentComponent.setState({movies_details : response.data, isLoaded: true});
                     console.log(response.data);
@@ -72,13 +73,14 @@ class DetailsTable extends Component {
                 <br/>
                 <Container>
                     <Row>
-                        <Col><h3>Movie Details :</h3></Col>
+                        <Col><h4>Movie Details :</h4></Col>
+                        <Col><h4 style={{ textAlign: "center" }}><Link to={this.state.reviewUrl}><Button variant="success" type="button">Add Review</Button></Link></h4></Col>
                         <Col><h4 style={{ textAlign: "right" }}><Link to="/Explore">Go Back</Link></h4></Col>
                     </Row>
                     <Row>
-                        <Col colSpan="2">
+                        <Col colSpan="3">
                             <br/>
-                            <Table striped bordered hover>
+                            <Table striped bordered hover responsive>
                                 <tbody>
                                     <tr>
                                         <td colSpan="2" style={{ fontWeight:"bold" }}>Title</td>
