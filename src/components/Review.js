@@ -29,7 +29,7 @@ class Review extends Component {
         axios.get('http://www.omdbapi.com/?i='+imgId+'&apikey='+apikey)
             .then(function (response) {
                 console.log(response);
-                if(response.data.Response == "False")
+                if(response.data.Response === "False")
                 {
                     console.log("Error");
                     currentComponent.setState({movieStatus : false});
@@ -115,15 +115,17 @@ class Review extends Component {
                             <Form.Label>How likely you recommend the movie</Form.Label><br/>
                             <ButtonToolbar>
                                 <ToggleButtonGroup type="radio" name="userChoice" defaultValue={"Less"} >
-                                    <ToggleButton value={"Less"}>Less</ToggleButton>
-                                    <ToggleButton value={"Very"}>Very</ToggleButton>
-                                    <ToggleButton value={"Extremely Likely"}>Extremely Likely</ToggleButton>
+                                    <ToggleButton value={"Less"} style={{ borderRadius: "25px" }}>Less</ToggleButton>&nbsp;
+                                    <ToggleButton value={"Very"} style={{ borderRadius: "25px" }}>Very</ToggleButton>&nbsp;
+                                    <ToggleButton value={"Extremely Likely"} style={{ borderRadius: "25px" }}>Extremely Likely</ToggleButton>
                                 </ToggleButtonGroup>
                             </ButtonToolbar>
                         </Form.Group>
-                        <Button style={{ marginLeft: "80%" }} variant="info" type="submit">
-                            Submit
-                        </Button>
+                        <Form.Group style={{ textAlign: "right" }}>
+                            <Button variant="info" type="submit">
+                                Submit
+                            </Button>
+                        </Form.Group>
                         </Form>
                     </div>
                 );

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
-import Dashboard from "../components/Dashboard";
 import { dbReg } from '../config/configDb';
 
 class Login extends Component{

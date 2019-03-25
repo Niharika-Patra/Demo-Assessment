@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Badge, Container, Row, Col, Button } from "react-bootstrap";
+import { Badge, Container, Row, Col } from "react-bootstrap";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import { Link, Redirect } from "react-router-dom";
 import { db } from '../config/configDb';

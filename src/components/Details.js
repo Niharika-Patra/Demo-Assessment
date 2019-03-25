@@ -25,7 +25,7 @@ class DetailsTable extends Component {
 
         axios.get('http://www.omdbapi.com/?i='+imgId+'&apikey='+apikey)
             .then(function (response) {
-                if(response.data.Response == "True")
+                if(response.data.Response === "True")
                 {
                     currentComponent.setState({movies_details : response.data, isLoaded: true});
                     console.log(response.data);

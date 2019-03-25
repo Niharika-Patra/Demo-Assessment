@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import Login from "./Login";
 import { dbReg } from '../config/configDb';
 
 class UserRegistrationPage extends Component{
