@@ -1,3 +1,27 @@
+# S C ASSIGNMENT
+
+User registration and login to view the movie details. User can provide review for the movies.
+
+## Getting Started
+		
+        1.clone or download the repository from git hub.
+		    2.Use command npm install 
+		
+### Prerequisites
+
+node.js
+react.js 
+
+### Installing
+
+		1.clone or download the repository from git hub.
+		2.Use command npm install 
+		3.npm start
+
+## Authors
+
+* **Niharika patra* - [ASSIGNMENT](https://github.com/Niharika-Patra/Demo-Assessment)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
